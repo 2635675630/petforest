@@ -46,7 +46,7 @@ export default {
                 username:null,
                 password:null,
                 checkcode:null,
-                ismanage:false
+                ismanage:"0"
         },
         checkcodeimg:null
         }
@@ -62,26 +62,78 @@ export default {
         },
         //注册网络请求
         submitregister(){
-            if(this.register.username==null||this.register.username.length<15||this.register.username.length>5)
-            {this.$confirm("用户注册用户名长度应大于5小于15","用户名长度错误",{
-                confirmButtonText: 'OK',
-                cancelButtonText: 'Cancel',
+            if(!/^[\da-zA-Z]{6,15}$/i.test(this.register.username))
+            {
+                this.$message({
+                message:"用户名长度应为6到15个英文、数字字符，不能包含空格等其他字符",
                 type: 'warning',
-                center: true,
-                })}
-            Register(this.register).then(res=>{
-                console.log(res)
-            })
+                })
+                }
+                else if(!/^[\da-zA-Z]{6,15}$/i.test(this.register.password)){
+                    this.$message({
+                    message:"密码长度应为6到15个英文、数字字符，不能包含空格等其他字符",
+                    type: 'warning',
+                    })
+                }
+                else if(this.register.password!=this.register.repassword){
+                    this.$message({
+                    message:"两次密码不一致",
+                    type: 'warning',
+                    })
+                }
+                else if(!/^[\d]{11}$/i.test(this.register.phonenumber)){
+                    this.$message({
+                    message:"手机号码应为11位",
+                    type: 'warning',
+                    })
+                }
+                else if(/.+?/i.test(this.register.checkcode)){
+                    this.$message({
+                    message:"验证码不能为空",
+                    type: 'warning',
+                    })
+                }
+                else{
+                    Register(this.register).then(res=>{
+                        console.log(res)
+                        this.$router.replaceState("/user")
+                                })
+                }
+            
         },
         //登录网络请求
         submitlogin(){
-            Login(this.login).then(res=>{
-                console.log(res)
-            })
+            if(!/^[\da-zA-Z]{6,15}$/i.test(this.login.username))
+            {
+                this.$message({
+                message:"用户名长度应为6到15个英文、数字字符，不能包含空格等其他字符",
+                type: 'warning',
+                })
+                }
+                else if(!/^[\da-zA-Z]{6,15}$/i.test(this.login.password)){
+                    this.$message({
+                    message:"密码长度应为6到15个英文、数字字符，不能包含空格等其他字符",
+                    type: 'warning',
+                    })
+                }
+                 else if(!/.+?/i.test(this.login.checkcode)){
+                    this.$message({
+                    message:"验证码不能为空",
+                    type: 'warning',
+                    })
+                }
+                else{
+                    Login(this.login).then(res=>{
+                                    console.log(res)
+                                    this.$router.push("/user")
+                                }).catch(res=>{
+                                     console.log(res)
+                                    this.$router.replace("/user")
+                                })
+                   
+                }
+           
         },
-        test(){
-            this.$alert('123')
-        }
     },
 
 }

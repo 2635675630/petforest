@@ -5,15 +5,25 @@ import { createRouter, createWebHashHistory } from "vue-router"
 
 const routes = [{
         path: '/',
-        name: 'login',
-        component: () =>
-            import ('views/login/login.vue')
+        redirect: '/login',
     },
     {
         path: '/login',
         name: 'login',
         component: () =>
             import ('views/login/login.vue')
+    },
+    {
+        path: '/user',
+        name: 'user',
+        component: () =>
+            import ('views/user/user.vue')
+    },
+    {
+        path: '/manage',
+        name: 'manage',
+        component: () =>
+            import ('views/manage/manage.vue')
     },
 
 ]
