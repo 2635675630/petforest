@@ -17,13 +17,27 @@ const routes = [{
         path: '/user',
         name: 'user',
         component: () =>
-            import ('views/user/user.vue')
+            import ('views/user/user.vue'),
+        children: [{
+            path: "/user/index",
+            components: {
+                rv_maintain: () =>
+                    import ('views/maintain/manage/index.vue'),
+            }
+        }]
     },
     {
         path: '/manage',
         name: 'manage',
         component: () =>
-            import ('views/manage/manage.vue')
+            import ('views/manage/manage.vue'),
+        children: [{
+            path: "/manage/index",
+            components: {
+                rv_maintain: () =>
+                    import ('views/maintain/manage/index.vue'),
+            }
+        }]
     },
 
 ]
