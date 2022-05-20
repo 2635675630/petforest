@@ -22,7 +22,7 @@ const routes = [{
             path: "/user/index",
             components: {
                 rv_maintain: () =>
-                    import ('views/maintain/manage/index.vue'),
+                    import ('views/maintain/manage/index/index.vue'),
             }
         }]
     },
@@ -32,12 +32,20 @@ const routes = [{
         component: () =>
             import ('views/manage/manage.vue'),
         children: [{
-            path: "/manage/index",
-            components: {
-                rv_maintain: () =>
-                    import ('views/maintain/manage/index.vue'),
+                path: "/manage/index",
+                components: {
+                    rv_maintain: () =>
+                        import ('views/maintain/manage/index/index.vue'),
+                }
+            },
+            {
+                path: "/manage/add_manage",
+                components: {
+                    rv_maintain: () =>
+                        import ('views/maintain/manage/usermanage/adduser.vue'),
+                }
             }
-        }]
+        ]
     },
 
 ]

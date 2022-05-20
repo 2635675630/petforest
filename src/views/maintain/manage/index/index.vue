@@ -6,7 +6,7 @@
 </template>
 
 <script>
-
+import {GetEchartData} from 'network/manage/index/index.js'
 export default {
     data(){
         return{
@@ -25,12 +25,21 @@ export default {
                 series: [{
                     name: '订单量',
                     type: 'bar',
-                    data:[1,2,3,4,5,9,8,8,8,8,8,8]
+                    data:[0,0,0,0,0,0,0,0,0,0,0,0]
                 }]
             }
         }
     },
-    
+    created(){
+        this.options.title.text=new Date().getFullYear()+"年订单增幅"
+        GetEchartData().then(res=>{
+            for(let i=0;i<res.data.length;i++){
+                let month=new Date(res.data[i].stimechapter).getMonth()
+                this.options.series[0].data[month]++
+            }
+            console.log(this.options)
+        })
+    },
     mounted(){
         
       this.myChart = this.$echarts.init(document.getElementById("box"));
