@@ -6,12 +6,12 @@
 </template>
 
 <script>
+import {reactive} from 'vue';
 import {GetEchartData} from 'network/manage/index/index.js'
 export default {
-    data(){
-        return{
-            mychart:null,
-            options:{
+    setup(){
+        let mychart=reactive()
+        let options=reactive({
                 title: {
                     text:123,
                 },
@@ -27,7 +27,10 @@ export default {
                     type: 'bar',
                     data:[0,0,0,0,0,0,0,0,0,0,0,0]
                 }]
-            }
+            })
+        return{
+            mychart,
+            options
         }
     },
     created(){
@@ -35,20 +38,16 @@ export default {
         GetEchartData().then(res=>{
             for(let i=0;i<res.data.length;i++){
                 let month=new Date(res.data[i].stimechapter).getMonth()
-                this.options.series[0].data[month]++
+                this.options.series[0].data[month]+=1
             }
             console.log(this.options)
+        }).then(()=>{
+            this.myChart.setOption(this.options);
+            this.myChart.resize();
         })
     },
-    mounted(){
-        
+    mounted(){    
       this.myChart = this.$echarts.init(document.getElementById("box"));
-      this.myChart.setOption(this.options);
-      console.log(this.myChart)
-      window.onresize = () => {
-                this.myChart.resize()
-            }
-      this.myChart.resize(); 
     }
 
 }

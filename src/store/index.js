@@ -16,9 +16,19 @@ import { createStore } from 'vuex'
 //   }
 // })
 export default createStore({
-    state: {},
+    state: {
+        username: sessionStorage.getItem("username"),
+        ismanage: sessionStorage.getItem("ismanage")
+    },
     getters: {},
-    mutations: {},
+    mutations: {
+        setusername(store, data) {
+            this.state.username = data.username
+            this.state.ismanage = data.ismanage
+            sessionStorage.setItem('username', data.username)
+            sessionStorage.setItem('ismanage', data.ismanage)
+        }
+    },
     actions: {},
     modules: {}
 })

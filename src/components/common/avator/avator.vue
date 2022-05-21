@@ -1,19 +1,25 @@
 <template>
   <div class="avator">
       <div class="img"><img :src="require('assets/img/'+userimg+'.png')" alt=""></div>
-      <div class="username"><span>username</span></div>
+      <div class="username"><span>{{username}}</span></div>
   </div>
 </template>
 
 <script>
+import {reactive} from 'vue';
+import {GetUserName} from 'network/common/avator.js'
 export default {
-    data(){
+    setup(){
+        let username=reactive()
         return{
-            username:null
+            username
         }
     },
     props:{
         userimg:{}
+    },
+    created(){
+        this.username=this.$store.state.username
     }
 }
 </script>

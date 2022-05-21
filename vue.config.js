@@ -45,18 +45,26 @@ module.exports = {
     //
     // pwa: {},
     devServer: {
-        // open: process.platform === "darwin",
 
-        // disableHostCheck: false,
 
         host: "localhost",
 
-        port: 8080,
-
+        port: 8081,
+        open: false,
         https: false,
-
-        // hotOnly: false, // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#configuring-proxy
-
-        // proxy: null // string | Object
-    },
+        proxy: { //配置跨域
+            // 这个地方的 '/api'  名字要和底下 '^/api'  这个地方的名字一样。如果这里是 '/bpi'，那么底下就也要是 '^/bpi'
+            '/': {
+                target: 'http://localhost:8080/', //这里后台的地址模拟的;应该填写你们真实的后台接口
+                ws: false,
+                changOrigin: true, //允许跨域
+                pathRewrite: {
+                    '^/': '/' //请求的时候使用这个api就可以
+                        // 如：你需要访问：https://cms-api.csdn.net/v1/web_home/select_content?componentIds=www-recomend-community
+                        // 现在只需这样子输入url： /api/v1/web_home/select_content?componentIds=www-recomend-community  即可
+                        // 它会变成：http://localhost:8080/api/v1/web_home/select_content?componentIds=www-recomend-community  并允许跨域
+                }
+            }
+        },
+    }
 }

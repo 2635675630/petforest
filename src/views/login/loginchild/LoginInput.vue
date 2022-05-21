@@ -124,12 +124,23 @@ export default {
                 }
                 else{
                     Login(this.login).then(res=>{
-                                    console.log(res)
-                                    this.$router.push("/user")
-                                }).catch(res=>{
-                                     console.log(res)
-                                    this.$router.replace("/user")
-                                })
+                        if(res.data.结果=="登录失败用户名不存在或密码错误"){
+                            this.$message({
+                            message:"登录失败用户名不存在或密码错误",
+                            type: 'error',
+                            })
+                        }
+                        else if(res.data.结果=="验证码错误"){
+                            this.$message({
+                            message:"验证码错误",
+                            type: 'error',
+                            })
+                        }
+                        else{
+                            this.$store.commit('setusername',{username:this.login.username,ismanage:this.login.ismanage})
+                            this.login.ismanage==0?this.$router.push("/user"):this.$router.push("/manage")
+                        }
+                    }).catch(res=>{console.log(res)})
                    
                 }
            

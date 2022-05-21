@@ -34,7 +34,7 @@
                     </template>
                     <el-menu-item index="/manage/submit_preorder">添加预约订单</el-menu-item>
                     <el-menu-item index="/manage/show_preorder">待处理预约订单</el-menu-item>
-                    <el-menu-item index="/manage/show_rpreoeder">已接受预约订单</el-menu-item>
+                    <el-menu-item index="/manage/show_rpreorder">已接受预约订单</el-menu-item>
                     <el-menu-item index="/manage/show_ordering">查看进行中订单</el-menu-item>
                     <el-menu-item index="/manage/show_ordered">查看所有历史订单</el-menu-item>
                     <el-menu-item index="/manage/show_rordered">按条件查询历史订单</el-menu-item>
@@ -54,7 +54,7 @@
                         <span>笼子管理</span>
                     </template>
                     <el-menu-item index="/manage/submit_cage">设置笼子数量</el-menu-item>
-                    <el-menu-item index="/manage/show_cage">查询笼子数量</el-menu-item>
+                    <el-menu-item index="/manage/show_cagenum">查询笼子数量</el-menu-item>
                 </el-sub-menu>
 
                 <el-sub-menu index="6" :title="服务套餐">

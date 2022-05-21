@@ -23,7 +23,7 @@
                         <span>宠物寄养</span>
                     </template>
                     <el-menu-item index="/user/submit_order" >提交预约订单</el-menu-item>
-                    <el-menu-item index="/user/submit_preorder">查看预约订单</el-menu-item>
+                    <el-menu-item index="/user/show_preorder">查看预约订单</el-menu-item>
                     <el-menu-item index="/user/show_ordering">查看进行中订单</el-menu-item>
                     <el-menu-item index="/user/show_ordered">查看历史订单</el-menu-item>
                 </el-sub-menu>

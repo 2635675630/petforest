@@ -24,11 +24,20 @@
 <script>
 import Avator from 'components/common/avator/avator.vue'
 import ManageMenu from 'components/content/menu/managemenu/managemenu.vue'
+import { useRoute, useRouter } from 'vue-router'
 export default {
   components:{
     Avator,
     ManageMenu,
-  }
+  },
+    beforeRouteEnter(to, from, next ){
+        if(sessionStorage.getItem('ismanage')!="1"){
+          next(false)
+        }
+        else{
+          next()
+        }
+    }
 }
 </script>
 
