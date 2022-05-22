@@ -22,5 +22,5 @@ app.use(store)
 app.use(router)
 app.use(ElementPlus)
 app.config.globalProperties.$echarts = echarts
-app.config.globalProperties.$router = router
+app.provide('$message', ElementPlus)
 app.mount('#app')

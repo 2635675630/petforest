@@ -9,3 +9,11 @@ export function GetEchartData(data) {
         }
     })
 }
+export function GetManageList() {
+    return request({
+        url: '/MUserServlet/show_user',
+        params: {
+            manage: 1
+        }
+    })
+}

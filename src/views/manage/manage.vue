@@ -61,7 +61,8 @@ export default {
   overflow: hidden;
 }
 .sider{
-  flex:1.2;
+  height: 100%;
+  width: 15%;
   flex-grow: 1.2;
   display: flex;
   flex-direction: column;
@@ -77,7 +78,8 @@ export default {
   height: 80%;
 }
 .section{
-  flex: 5;
+  height: 100%;
+  width: 85%;
   flex-grow: 5;
 }
 </style>
