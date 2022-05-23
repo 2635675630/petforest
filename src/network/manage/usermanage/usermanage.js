@@ -17,3 +17,19 @@ export function GetManageList() {
         }
     })
 }
+export function DeleteUser(data) {
+    return request({
+        url: '/MUserServlet/delete_user',
+        params: {
+            username: data
+        }
+    })
+}
+export function GetUserList(data) {
+    return request({
+        url: '/MUserServlet/show_user',
+        params: {
+            manage: 0
+        }
+    })
+}

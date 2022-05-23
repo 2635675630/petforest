@@ -5,7 +5,7 @@
       </ul>
       <ul v-for="(items,index) in datalist" :key="index" >
             <li v-for="(item,index) in items" :key="index">{{item}}</li>
-            <li><slot name="a" :index="items"></slot></li>
+            <li ><slot name="a" :index="items"></slot></li>
       </ul>
       <ul id="footer">
           <li>
@@ -20,7 +20,6 @@
 <script>
 import {reactive} from 'vue';
 import Adduser from '@/views/maintain/manage/usermanage/adduser.vue';
-import {  inject,getCurrentInstance} from 'vue'
 import { ElMessage } from 'element-plus'
 export default {
     setup(props,context) {
@@ -83,7 +82,7 @@ export default {
         }
     },
     mounted() {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i<this.alldata.length&&i < 10; i++) {
             this.datalist.push(this.alldata[i]);
         }
         this.tolltaltpage.page=Math.ceil(this.alldata.length/10)
@@ -105,13 +104,17 @@ export default {
     list-style-type: none;
     text-align: center;
     height: 8%;
-}
-.list ul li{
-    flex:1;
+    flex-wrap: nowrap;
     
 }
 .list ul li{
-    font-size: 20px;
+    flex:1;
+    flex-grow: 1;
+    flex-shrink: 0;
+    
+}
+.list ul li{
+    font-size: 13px;
     line-height: 250%;
 }
 .list #head{
@@ -121,7 +124,7 @@ export default {
 }
 .list #head li{
     line-height: 280%;
-    font-size: 25px;
+    font-size: 15px;
     color: black;
 }
 .list #footer{
